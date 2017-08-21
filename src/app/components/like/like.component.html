@@ -1,0 +1,14 @@
+<div>
+
+  {{title}} Likes: {{count}}
+
+  <button (click)="incr()">
+     +1
+  </button>
+
+  <!-- transclude, transfer child content here -->
+  <ng-content>
+
+  </ng-content>
+
+</div>

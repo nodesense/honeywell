@@ -1,0 +1,23 @@
+<h2>About</h2>
+
+<div (click)="divClick()">
+
+  <h2> Members </h2>
+
+  <button (click)="toggle($event)">
+    Show/Hide
+  </button>
+
+  <ul *ngIf="show == true else elsePart">
+      <li *ngFor="let name of members"> 
+        {{name}}
+      </li>
+  </ul>
+
+  <ng-template #elsePart>
+      <ul>
+        <li>No Items</li>
+      </ul>
+  </ng-template>
+
+</div>

@@ -1,10 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } 
+        from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'product-app', //html tag name
+    templateUrl : "app.component.html",
+
+    //scopped css
+    styleUrls: [
+        "app.component.css"
+    ]
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+    title:string = "Product Application";
+
+    //View is not loaded
+    constructor() {
+        console.log("App component created");
+    }
+
+    //called after view is loaded
+    ngOnInit() {
+        console.log("app ngOnInit");
+    }
+
+
 }

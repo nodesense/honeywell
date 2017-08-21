@@ -1,0 +1,31 @@
+<h2>Home</h2>
+ 
+
+<!-- () subscriber
+ $event is a number passed in emit(count + 1)
+ likes is a setter
+-->
+<!-- 
+<app-like [count]="likes"
+          (countChange)="likes=$event"
+          title="Home" >
+
+</app-like> -->
+
+<app-like [(count)]="likes"
+          title="Home">
+
+    <!-- content child -->
+    <p>like us, tweet us</p>
+
+</app-like>
+
+
+<app-like [(count)]="siteLikes"
+          title="Site">
+
+    <!-- content child -->
+    <p>visit our site</p>
+
+</app-like>
+
