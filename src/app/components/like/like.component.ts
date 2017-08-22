@@ -1,6 +1,7 @@
 import { Component, OnInit, 
         Input, Output, 
-        EventEmitter } from '@angular/core';
+        EventEmitter, 
+        SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-like',
@@ -28,9 +29,14 @@ export class LikeComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("@input changed", changes);
+  }
+
   incr() {
     //publisher
     this.countChange.emit(this.count + 1)
+
   }
 
 }

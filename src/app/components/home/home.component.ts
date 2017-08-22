@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
 
     setInterval( ()=> {
         this.likes = this.likes + 20;
+
     }, 2000);
 
   }
