@@ -1,3 +1,46 @@
-<p>
-  product-edit works!
-</p>
+<h2>Product Edit</h2>
+
+<form  (ngSubmit)="saveProduct()">
+  Name
+
+  <input name="name" 
+         [(ngModel)]="product.name" 
+
+         required
+         minlength="3"
+
+         #productName="ngModel"
+  />
+
+  <p *ngIf="productName.dirty">
+      Name is changed
+  </p>
+
+  <p *ngIf="productName.invalid">
+     Name is invalid
+  </p>
+
+  <p *ngIf="productName.errors?.minlength">
+      {{productName.errors?.minlength.requiredLength}} chars needed
+  </p>
+
+
+  <pre > 
+    {{productName.errors | json}} 
+
+  </pre>
+
+  Price
+
+  <input name="price" 
+         [(ngModel)]="product.price" 
+
+         required
+         pattern="[0-9]{4}"
+
+         #productPrice="ngModel"
+  />
+
+
+  <button type="submit">Save</button>
+</form>
