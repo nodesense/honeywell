@@ -9,14 +9,19 @@ import {RouterModule} from "@angular/router";
 import { routes } from "./product.routing";
 
 import {HttpModule} from "@angular/http";
+
 import {FormsModule, 
         ReactiveFormsModule}  from "@angular/forms";
+
 import { ProductService } from "./services/product.service";
 
 
 
 import {environment} 
         from "../../environments/environment";
+import { SharedModule } from "../shared/shared.module";
+import { CanEditGuard } from "./guards/can-edit.guard";
+import { SaveAlertGuard } from "./guards/save-alert.guard";
 
 console.log("ENV", environment);
 
@@ -27,6 +32,7 @@ console.log("ENV", environment);
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ProductHomeComponent, 
@@ -36,7 +42,10 @@ console.log("ENV", environment);
 
   //DI value, class, factory
   providers: [
-    ProductService
+    ProductService,
+    CanEditGuard,
+
+    SaveAlertGuard
   ]
 })
 export class ProductModule { }

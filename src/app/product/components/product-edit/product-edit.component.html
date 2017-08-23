@@ -1,6 +1,19 @@
 <h2>Product Edit</h2>
 
-<form  (ngSubmit)="saveProduct()">
+<form  (ngSubmit)="saveProduct()"
+        #productForm="ngForm"
+  >
+
+
+  <p *ngIf="productForm.dirty">
+    Form is changed
+  </p>
+
+
+  <p *ngIf="productForm.invalid">
+      Form is invalid
+    </p>
+
   Name
 
   <input name="name" 
@@ -25,7 +38,7 @@
   </p>
 
 
-  <pre > 
+  <pre *ngIf="productName.errors"> 
     {{productName.errors | json}} 
 
   </pre>
@@ -36,7 +49,7 @@
          [(ngModel)]="product.price" 
 
          required
-         pattern="[0-9]{4}"
+         pattern="[0-9]{3}"
 
          #productPrice="ngModel"
   />

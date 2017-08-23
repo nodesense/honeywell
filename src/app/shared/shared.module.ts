@@ -4,6 +4,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import {RouterModule} from "@angular/router";
+import { FilterPipe } from "./pipes/filter.pipe";
+import { DataService } from "./services/data.service";
 
 @NgModule({
   imports: [
@@ -12,12 +14,17 @@ import {RouterModule} from "@angular/router";
   ],
   declarations: [HeaderComponent, 
                  FooterComponent,
-                
+                 FilterPipe
                 ],
 
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FilterPipe
+  ],
+
+  providers: [
+    DataService
   ]
 })
 export class SharedModule { }

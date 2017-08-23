@@ -1,0 +1,41 @@
+Routing Hash vs HTML5
+Pipes - Custom Pipes
+Routes: Guards:  CanActivate & CanDeActivate
+Reactive Forms - Search products
+
+Save from headers
+
+--
+Debug  in browser
+Debug in VS Code
+
+Directive
+
+Auth demo code integration
+Cart + Reactive Forms  Demo code integration
+Error Handling parts - Demo & Code Integration
+
+Unit Test Cases
+Production builds
+
+--
+HTML 5
+
+Request URL:http://localhost:4200/products/list
+Request Method:GET
+
+Server side support needed
+
+SEO
+
+--
+
+HASH
+
+http://localhost:4200/#/products/list
+NOT SEO Friendly
+
+Static Files good
+
+NO Server side support needed
+

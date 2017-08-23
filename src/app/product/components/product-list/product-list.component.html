@@ -5,25 +5,49 @@
   Refresh
 </button>
 
+
+Field Name
+<select name="field"  [(ngModel)]="fieldName">
+  <option value="">Select</option>
+  <option value="price">Price</option>
+  <option value="year">Year</option>
+</select>
+
+
+Condition
+<select name="cond"  [(ngModel)]="predicate">
+  <option value="">Select</option>
+  <option value="eg"> EQ</option>
+  <option value="gt"> GT</option>
+  <option value="lt"> LT</option>
+</select>
+
+Value
+<input name="value" [(ngModel)]="value" />
+
+
 <table>
 <tr>
   <th> Name </th>
   <th> Price </th>
    
+  <th> Year </th>
+
   <th> Delete </th>
   
 </tr>
 
 
-<tr *ngFor="let product of products;trackBy:trackById">
+<tr *ngFor="let product of (products | filter:fieldName:predicate:value);trackBy:trackById">
   <td> 
    <a [routerLink]="['/products', 'edit', product.id]">
-    {{product.name}}
+    {{product.name | uppercase}}
    </a>
   
   </td>
-  <td> {{product.price}} </td>
+  <td> {{product.price | currency:"INR"}} </td>
   
+  <td> {{product.year}}</td>
 
   <td> 
         <button (click)="deleteProduct(product.id)">

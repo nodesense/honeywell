@@ -12,6 +12,10 @@ export class ProductListComponent implements OnInit {
 
   products: Array<Product> = [];
 
+  fieldName:string = "price";
+  predicate: string = "gt";
+  value: any = "";
+ 
   //DI
   constructor(private productService:ProductService) {
     

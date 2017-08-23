@@ -22,6 +22,13 @@ import {environment}
 
 console.log("ENV", environment);
 
+import {LocationStrategy,
+        HashLocationStrategy,
+       PathLocationStrategy} from "@angular/common";
+
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/debounceTime"
+
 @NgModule({
     //prior dependencies/references
     imports: [
@@ -53,6 +60,11 @@ console.log("ENV", environment);
         {
            provide: "apiEndPoint",
            useValue: environment.apiEndPoint 
+        },
+
+        {
+          provide: LocationStrategy,
+          useClass: PathLocationStrategy  
         }
     ]
 

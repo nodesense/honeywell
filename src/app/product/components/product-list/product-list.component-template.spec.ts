@@ -51,27 +51,53 @@ fdescribe('ProductListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   expect(component).toBeTruthy();
+  // });
 
   it('should resolve test data', fakeAsync(() => {
-    serviceStub = fixture.debugElement.injector.get(ProductService);
 
-    const spy = spyOn(serviceStub, 'getProducts').and.returnValue(
-      Observable.of(testProducts)
-    );
 
-    component.ngOnInit();
-    fixture.detectChanges();
+    TestBed.overrideComponent(ProductListComponent, {
+      set: {
+        template: `<li *ngFor="let product of products">
+                     {{product.name}} 
+                  </li>`
+      }});
+      
+      TestBed.compileComponents()
+      .then ( () => {
+        fixture = TestBed.createComponent(ProductListComponent);
 
-    expect(component.products).toEqual(testProducts);
-    expect(spy.calls.any()).toEqual(true);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+
+        serviceStub = fixture.debugElement.injector.get(ProductService);
+
+        const spy = spyOn(serviceStub, 'getProducts').and.returnValue(
+          Observable.of(testProducts)
+        );
+
+        component.ngOnInit();
+        fixture.detectChanges();
+
+        expect(component.products).toEqual(testProducts);
+        expect(spy.calls.any()).toEqual(true);
+
+        fixture.whenStable().then(() => {
+          const compiled = fixture.debugElement.nativeElement;
+          console.log("Inner html ", compiled.innerHTML);
+          //expect(compiled.querySelector('li').innerText).toEqual('Product 1');
+          expect(compiled.textContent).toContain ('Phone 1');
+        });
+      })
+     
+    
+ 
   }));
   
 });
