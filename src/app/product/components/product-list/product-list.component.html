@@ -1,6 +1,15 @@
 <h2>Product List</h2>
 
 
+<ul>
+   <li *ngFor="let p of offeredProducts">
+      {{p.name}}
+   </li>
+</ul>
+
+
+
+
 <button (click)="fetchProducts()">
   Refresh
 </button>

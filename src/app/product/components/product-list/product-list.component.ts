@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../models/product.model";
 import { Subscription } from "rxjs/Subscription";
+import { DataService } from "../../../shared/services/data.service";
 
 @Component({
   selector: 'app-product-list',
@@ -17,9 +18,12 @@ export class ProductListComponent implements OnInit {
   value: any = "";
  
   //DI
-  constructor(private productService:ProductService) {
+  constructor(private productService:ProductService,
+              private dataService:DataService
+        ) {
     
    }
+
 
    trackById(product: Product, index: number) {
      return product.id;
@@ -41,20 +45,25 @@ export class ProductListComponent implements OnInit {
     console.log("list destroy");
     
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
+    
    }
 
 
+ 
 
-   fetchProducts2() {
-      this.productService
-      .getProductsByPromise()
-      .then( (products:Product[]) => {
-        this.products = products;
-      })
-   }
+   offeredProducts:Product[] = [];
 
+   subscription2:Subscription;
+   
   ngOnInit() {
       this.fetchProducts();
+
+     this.subscription2 = this.dataService.historySubject
+      .subscribe ( (product: Product) => {
+        this.offeredProducts.push(product);
+      })
+
   }
 
 }
